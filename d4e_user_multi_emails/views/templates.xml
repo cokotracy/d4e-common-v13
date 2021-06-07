@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <template id="assets_backend" name="d4e_user_multi_emails assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/d4e_user_multi_emails/static/src/js/switch_company_email.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

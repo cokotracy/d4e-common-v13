@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="template_followup_report" inherit_id="account_followup.followup_filter_info_template">
+            <xpath expr="//div[hasclass('row')]" position="before">
+                <t t-set="contact_widget_fields" t-value="['address', 'name']" />
+            </xpath>
+        </template>
+    </data>
+</odoo>

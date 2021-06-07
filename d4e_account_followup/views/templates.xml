@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="main_template_followup" inherit_id="account_reports.main_template">
+            <xpath expr="//div[hasclass('table-responsive')]/table" position="before">
+                <style>
+                    .o_account_reports_table tr {
+                        border-bottom: 1px solid #666;
+                    }
+                </style>
+            </xpath>
+            <xpath expr="//div[hasclass('table-responsive')]/table" position="after">
+                <t t-if="model._name == 'account.followup.report'">
+                    <style>
+                        .bank-details &gt; table &gt; tbody &gt; tr &gt; td &gt; span {
+                            margin: 0px !important;
+                        }
+                    </style>
+                    <div class="bank-details" style="padding-top: 20px;">
+                        <h3>Banks Details</h3>
+                        <table>
+                            <thead>
+                                <th width="50%">BIC</th>
+                                <th width="50%">IBAN</th>
+                            </thead>
+                            <tbody>
+                                <t t-set="table_bic" t-value="[]" />
+                                <t t-foreach="lines['lines']" t-as="line">
+                                    <tr t-if="line['name'] != '' and 'account_move' in line and line['account_move'].invoice_partner_bank_id and line['account_move'].invoice_partner_bank_id.id not in table_bic">
+                                        <td>
+                                            <span t-esc="line['account_move'].invoice_partner_bank_id.bank_bic" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="line['account_move'].invoice_partner_bank_id.acc_number" />
+                                        </td>
+                                        <t t-set="table_bic" t-value="table_bic + [line['account_move'].invoice_partner_bank_id.id]" />
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+
+        <template id="followup_filter_info_template" inherit_id="account_followup.followup_filter_info_template">
+            <xpath expr="//div[hasclass('row')]" position="before">
+                <t t-set="contact_widget_fields" t-value="['address', 'name']" />
+            </xpath>
+        </template>
+    </data>
+</odoo>

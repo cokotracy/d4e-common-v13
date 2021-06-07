@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="d4e_pricelist_taxes_report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//tr[hasclass('o_subtotal')]/td[1]" position="replace">
+            <td><strong>Subtotal HT </strong></td>
+        </xpath>
+        <xpath expr="//tr[hasclass('o_total')]/td[1]" position="replace">
+            <td><strong>Total TTC </strong></td>
+        </xpath>
+    </template>
+
+</odoo>

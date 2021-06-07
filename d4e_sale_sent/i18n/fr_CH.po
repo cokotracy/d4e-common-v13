@@ -1,0 +1,31 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* d4e_sale_sent
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0alpha1+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-06 22:31+0000\n"
+"PO-Revision-Date: 2020-01-06 22:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: d4e_sale_sent
+#: model_terms:ir.ui.view,arch_db:d4e_sale_sent.view_order_form
+msgid "Mark as sent"
+msgstr "Marquer comme envoyé"
+
+#. module: d4e_sale_sent
+#: model:ir.model,name:d4e_sale_sent.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: d4e_sale_sent
+#: model:ir.model.fields,field_description:d4e_sale_sent.field_sale_order__sent_date
+msgid "Sent Date"
+msgstr "Date d'envoi"

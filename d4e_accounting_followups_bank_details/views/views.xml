@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <template id="main_template_followup" inherit_id="account_reports.main_template">
+            <xpath expr="//div[@class='table-responsive']/table" position="after">
+              <t t-if="model._name == 'account.followup.report'">
+                <div style="padding-top:20px">
+                    <h3>Banks Details</h3>
+                    <table>
+                        <thead>
+                            <th width="50%">BIC</th>
+                            <th width="50%">IBAN</th>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="lines['lines']" t-as="line">
+                                <tr>
+                                    <t t-if="line['name'] != ''">
+                                        <t t-if="'account_move' in line and line['account_move'].invoice_partner_bank_id">
+                                            <td>
+                                                <t t-esc="line['account_move'].invoice_partner_bank_id.bank_bic"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="line['account_move'].invoice_partner_bank_id.acc_number"/>
+                                            </td>
+                                        </t>
+                                    </t>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+              </t>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

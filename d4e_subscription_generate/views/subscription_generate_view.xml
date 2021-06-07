@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="model_generate_invoice_subscription" model="ir.actions.server">
+            <field name="name">Generate Invoice</field>
+            <field name="model_id" ref="sale_subscription.model_sale_subscription"/>
+            <field name="binding_model_id" ref="sale_subscription.model_sale_subscription"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.recurring_invoice()</field>
+        </record>
+
+        <record id="model_generate_invoice_subscription_list" model="ir.actions.server">
+            <field name="name">Generate Invoices</field>
+            <field name="model_id" ref="sale_subscription.model_sale_subscription"/>
+            <field name="binding_model_id" ref="sale_subscription.model_sale_subscription"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                for record in records:
+                action = record.recurring_invoice()</field>
+        </record>
+
+    </data>
+</odoo>

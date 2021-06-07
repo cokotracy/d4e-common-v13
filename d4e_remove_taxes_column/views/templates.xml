@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+    <template inherit_id="sale.sale_order_portal_content" id="sale_order_portal_content_taxes">
+        <xpath expr="//thead[@class='bg-100']/tr/th[5]" position="replace">
+        </xpath>
+        <xpath expr="//t[@t-if='not line.display_type']/td[5]" position="replace">
+        </xpath>
+    </template>
+    </data>
+</odoo>

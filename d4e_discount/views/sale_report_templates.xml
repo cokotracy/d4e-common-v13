@@ -1,0 +1,18 @@
+<odoo>
+  <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+    <span t-field="doc.amount_untaxed" position="replace">
+      <span t-field="doc.amount_untaxed_with_disc"/>
+    </span>
+    <xpath expr="//td[@name='td_amount_untaxed_label']/parent::tr" position="after">
+      <tr t-if="doc.discount_num != 0">
+        <td><strong>Discount <span t-field="doc.discount_num"/>%</strong></td>
+        <td class="text-right">
+          <span t-field="doc.amount_discount"/>
+        </td>
+      </tr>
+    </xpath>
+<!--    <xpath expr="//tr/t/td[@name='td_name']/parent::t/parent::tr" position="attributes">-->
+<!--      <attribute name="t-if">not line.is_discount_line</attribute>-->
+<!--    </xpath>-->
+  </template>
+</odoo>

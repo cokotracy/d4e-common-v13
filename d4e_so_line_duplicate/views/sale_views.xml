@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_order_form_dupl" model="ir.ui.view">
+            <field name="name">sale.order.form.duplicate.lines</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                    <button name="copy_so_line"
+                            type="object"
+                            class="oe_edit_only fa fa-copy">
+                    </button>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

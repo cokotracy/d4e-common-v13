@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_users_form_emails" model="ir.ui.view">
+            <field name="name">res.users.form.emails</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@name='access_rights']/group" position="replace">
+                    <group attrs="{'invisible': [('companies_count', '&lt;=', 1)]}">
+                        <group string="Multi Companies">
+                            <field string="Allowed Companies" name="company_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"/>
+                            <field string="Default Company" name="company_id" context="{'user_preference': 0}"/>
+                            <field string="Companies count" name="companies_count" invisible="1"/>
+                        </group>
+                        <group string="Emails By Company">
+                            <field name="email_by_company" nolabel="1">
+                                <tree>
+                                    <field name="company_id"/>
+                                    <field name="email"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_partner_form_emails" model="ir.ui.view">
+            <field name="name">res.partner.form.emails</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group" position="after">
+                    <group>
+                        <group string="Emails By Company" groups="base.group_multi_company">
+                            <field name="email_by_company" widget="one2many" nolabel="1">
+                                <tree editable="top">
+                                    <field name="company_id"/>
+                                    <field name="email"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

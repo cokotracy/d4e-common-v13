@@ -1,0 +1,21 @@
+<odoo>
+  <data>
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_bank_statement_form_inherit" model="ir.ui.view">
+        <field name="name">account.bank.statement.form</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_bank_statement_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='check_confirm_bank']" position="after">
+
+                 <button name="button_cancel_reconciliations"
+                         attrs="{'invisible': [('state', '=', 'confirm')]}"
+                         string="Revert reconciliation"
+                         type="object"
+                         icon="fa-undo"/>
+            </xpath>
+        </field>
+    </record>
+
+  </data>
+</odoo>

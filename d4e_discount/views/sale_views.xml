@@ -1,0 +1,21 @@
+<odoo>
+  <record id="view_order_form" model="ir.ui.view">
+    <field name="name">sale.order.form</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+      <field name="payment_term_id" position="after">
+        <field name="discount_num" attrs="{'readonly': [('state', 'not in', ['draft', 'sent'])]}"/>
+      </field>
+      <field name="amount_untaxed" position="after">
+        <field name="amount_discount"
+               attrs="{'invisible': [('discount_num', '=', 0)]}"
+               widget='monetary'
+               options="{'currency_field': 'currency_id'}"/>
+      </field>
+      <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+        <field name="is_discount_line" invisible="1"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

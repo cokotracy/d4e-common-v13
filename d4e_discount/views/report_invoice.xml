@@ -1,0 +1,21 @@
+<odoo>
+  <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+    <span t-field="o.amount_untaxed" position="after">
+      <span t-field="o.amount_untaxed_with_disc" t-if="o.type == 'out_invoice'"/>
+    </span>
+    <span t-field="o.amount_untaxed" position="attributes">
+      <attribute name="t-if">o.type != 'out_invoice'</attribute>
+    </span>
+    <xpath expr="//span[@t-field='o.amount_untaxed']/parent::td/parent::tr" position="after">
+      <tr t-if="o.discount_num != 0 and o.type == 'out_invoice'">
+        <td><strong>Discount <span t-field="o.discount_num"/>%</strong></td>
+        <td class="text-right">
+          <span t-field="o.amount_discount"/>
+        </td>
+      </tr>
+    </xpath>
+    <xpath expr="//tr/t[@name='account_invoice_line_accountable']/parent::tr" position="attributes">
+      <attribute name="t-if">not line.is_discount_line</attribute>
+    </xpath>
+  </template>
+</odoo>

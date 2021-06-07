@@ -1,0 +1,19 @@
+<odoo>
+  <record id="product_category_discount" model="product.category">
+    <field name="parent_id" ref="product.product_category_1"/>
+    <field name="name">Discount</field>
+  </record>
+  <record id="product_discount" model="product.product">
+    <field name="name">Discount</field>
+    <field name="standard_price">0.00</field>
+    <field name="list_price">0.00</field>
+    <field name="weight">0.00</field>
+    <field name="type">consu</field>
+    <field name="categ_id" ref="product_category_discount"/>
+    <field name="uom_id" ref="uom.product_uom_unit"/>
+    <field name="uom_po_id" ref="uom.product_uom_unit"/>
+    <field name="default_code">REM</field>
+    <field name="sale_ok">False</field>
+    <field name="purchase_ok">False</field>
+  </record>
+</odoo>

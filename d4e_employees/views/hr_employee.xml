@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hr_employee_inherit">
+            <field name="name">Private Contact Section Form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='address_home_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='address_home_id']" position="after">
+                    <field name="employee_home_address" />
+                </xpath>
+                <xpath expr="//field[@name='private_email']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='private_email']" position="after">
+                    <field name="employee_private_email" widget="email" />
+                </xpath>
+                <xpath expr="//field[@name='phone']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='phone']" position="after">
+                    <field name="employee_phone" widget="phone" />
+                </xpath>
+                <xpath expr="//field[@name='bank_account_id']" position="after">
+                    <field name="employee_bank_account" />
+                    <field name="employee_bank_id" options="{'no_create': True}" />
+                </xpath>
+                <xpath expr="//field[@name='bank_account_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
