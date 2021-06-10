@@ -55,3 +55,8 @@ msgstr "Imprimé"
 #: model:ir.model.fields,field_description:d4e_invoice_print.field_account_move__sent
 msgid "Sent"
 msgstr "Envoyé par email"
+
+#. module: d4e_invoice_print
+#: model_terms:ir.ui.view,arch_db:d4e_invoice_print.report_invoice_document
+msgid "<strong>Print Date:</strong>"
+msgstr "<strong>Date d'impression:</strong>"
