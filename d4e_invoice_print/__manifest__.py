@@ -16,7 +16,6 @@
     'data': [
         'views/account_move_views.xml',
         'views/reports.xml',
-        'reports/account_move.xml',
     ],
     'installable': True,
     'application': False,
