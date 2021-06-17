@@ -14,6 +14,7 @@
         'l10n_ch',
     ],
     'data': [
+        'views/assets.xml',
         'views/account_move_views.xml',
         'views/reports.xml',
     ],

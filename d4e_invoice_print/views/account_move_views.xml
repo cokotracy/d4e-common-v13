@@ -30,16 +30,13 @@
         <field name="binding_model_id" ref="account.model_account_move"/>
         <field name="state">code</field>
         <field name="code">
-            <![CDATA[
-                if records:
-                    active_ids = env.context.get('active_ids')
-                    url = '/report/isr/%s' % ','.join(str(id) for id in active_ids)
-                    action = {
-                        'type': 'ir.actions.act_url',
-                        'url': url,
-                        'target': 'new',
-                    }
-            ]]>
+            if records:
+                url = '/report/isr/%s' % ','.join(str(id) for id in records.ids)
+                action = {
+                    'type': 'ir.actions.act_url',
+                    'url': url,
+                    'target': 'new',
+                }
         </field>
     </record>
 
@@ -49,16 +46,13 @@
         <field name="binding_model_id" ref="account.model_account_move"/>
         <field name="state">code</field>
         <field name="code">
-            <![CDATA[
-                if records:
-                    active_ids = env.context.get('active_ids')
-                    url = '/report/qr/%s' % ','.join(str(id) for id in active_ids)
-                    action = {
-                        'type': 'ir.actions.act_url',
-                        'url': url,
-                        'target': 'new',
-                    }
-                ]]>
+            if records and records.filtered(lambda r: r.state == 'posted' and r.type == 'out_invoice'):
+                url = '/report/qr/%s' % ','.join(str(id) for id in records.ids)
+                action = {
+                    'type': 'ir.actions.act_url',
+                    'url': url,
+                    'target': 'new',
+                }
         </field>
     </record>
 
