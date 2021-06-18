@@ -44,6 +44,7 @@
         <field name="name">Print invoice with QR</field>
         <field name="model_id" ref="account.model_account_move"/>
         <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">form</field>
         <field name="state">code</field>
         <field name="code">
             if records and records.filtered(lambda r: r.state == 'posted' and r.type == 'out_invoice'):
