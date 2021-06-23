@@ -50,7 +50,7 @@ class SaleSubscription(models.Model):
                                 invoice_values = subscription.with_context(lang=subscription.partner_id.lang)._prepare_invoice()
                                 invoice_values['invoice_partner_bank_id'] = self.company_id.partner_id.bank_ids[:1]
                                 new_invoice = self.env['account.move'].with_context(context_invoice).create(invoice_values)
-                                # new_invoice.invoice_payment_ref = new_invoice.name
+                                new_invoice.invoice_payment_ref = None
                                 new_invoice.message_post_with_view(
                                     'mail.message_origin_link',
                                     values={'self': new_invoice, 'origin': subscription},
@@ -127,7 +127,7 @@ class SaleSubscription(models.Model):
                             invoice_values = subscription.with_context(lang=subscription.partner_id.lang)._prepare_invoice()
                             invoice_values['invoice_partner_bank_id'] = self.company_id.partner_id.bank_ids[:1]
                             new_invoice = self.env['account.move'].with_context(context_invoice).create(invoice_values)
-                            # new_invoice.invoice_payment_ref = new_invoice.name
+                            new_invoice.invoice_payment_ref = None
                             new_invoice.message_post_with_view(
                                 'mail.message_origin_link',
                                 values={'self': new_invoice, 'origin': subscription},
@@ -161,3 +161,14 @@ class SaleSubscription(models.Model):
         invoice['invoice_partner_bank_id'] = self.company_id.partner_id.bank_ids[:1]
         invoice['invoice_line_ids'] = self._prepare_invoice_lines(invoice['fiscal_position_id'])
         return invoice
+
+
+    @api.model
+    def _cron_recurring_create_invoice(self):
+        invoices = super(SaleSubscription, self)._cron_recurring_create_invoice()
+        for invoice in invoices:
+            invoice.sudo().write({
+                'invoice_payment_ref': None,
+                'invoice_partner_bank_id': invoice.company_id.partner_id.bank_ids[:1]
+            })
+        return invoices
